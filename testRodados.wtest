@@ -1,0 +1,81 @@
+import dependencia.*
+import rodados.*
+
+describe "Grupo de tests de los rodados" {
+  const deportes = new Dependencia(empleados = 45)
+  const cultura = new Dependencia(empleados = 31)
+  const cachito = new Corsa(color = rojo)
+  const corsa1 = new Corsa(color = azul)
+  const corsa2 = new Corsa(color = verde)
+  const kwid1 = new Kwid(tieneTanqueAdicional = true)
+  const kwid2 = new Kwid(tieneTanqueAdicional = true)
+  const kwid3 = new Kwid(tieneTanqueAdicional = true)
+  const kwid4 = new Kwid(tieneTanqueAdicional = false)
+  const especial1 = new AutoEspecial(
+    capacidad = 5,
+    velocidadMaxima = 160,
+    peso = 1200,
+    color = beige
+  )
+  
+  method initialize() {
+    deportes.agregarAFlota(cachito)
+    deportes.agregarAFlota(corsa1)
+    deportes.agregarAFlota(corsa2)
+    deportes.agregarAFlota(kwid1)
+    deportes.agregarAFlota(especial1)
+    cultura.agregarAFlota(cachito)
+    cultura.agregarAFlota(kwid2)
+    cultura.agregarAFlota(kwid3)
+    cultura.agregarAFlota(kwid4)
+    cultura.agregarAFlota(trafic)
+  }
+  
+  test "El peso total de la flota de deportes es 6450 kg" {
+    assert.equals(6450, deportes.pesoTotalFlota())
+  }
+  
+  test "El peso total de la flota de cultura es 10700 kg" {
+    assert.equals(10700, cultura.pesoTotalFlota())
+  }
+  
+  test "La flota de deportes esta bien equipada" {
+    assert.that(deportes.estaBienEquipada())
+  }
+  
+  test "La flota de cultura no esta bien equipada" {
+    assert.notThat(cultura.estaBienEquipada())
+  }
+  
+  test "La capacidad de color azul en la flota de deportes es 7" {
+    assert.equals(7, deportes.capacidadTotalEnColor(azul))
+  }
+  
+  test "La capacidad de color azul en la flota de cultura es 10" {
+    assert.equals(10, cultura.capacidadTotalEnColor(azul))
+  }
+  
+  test "El color de rodado mas rapido en deportes es beige" {
+    assert.equals(beige, deportes.colorDelRodadoMasRapido())
+  }
+  
+  test "El color de rodado mas rapido en cultura es rojo" {
+    assert.equals(rojo, cultura.colorDelRodadoMasRapido())
+  }
+  
+  test "La dependencia de deportes es grande" {
+    assert.that(deportes.esGrande())
+  }
+  
+  test "La dependencia de cultura no es grande" {
+    assert.notThat(cultura.esGrande())
+  }
+
+  test "La capacidad faltante de deportes es de 25" {
+    assert.equals(25, deportes.capacidadFaltante())
+  }
+
+  test "La capacidad faltante de cultura es de 5" {
+    assert.equals(5, cultura.capacidadFaltante())
+  }
+}
