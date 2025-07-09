@@ -1,5 +1,6 @@
 import dependencia.*
 import rodados.*
+import pedidos.*
 
 describe "Grupo de tests de los rodados" {
   const deportes = new Dependencia(empleados = 45)
@@ -16,6 +17,12 @@ describe "Grupo de tests de los rodados" {
     velocidadMaxima = 160,
     peso = 1200,
     color = beige
+  )
+  const pedido1 = new Pedido(
+    distancia = 960,
+    tiempoMaximo = 8,
+    cantidadDePasajeros = 4,
+    coloresIncompatibles = [azul, negro]
   )
   
   method initialize() {
@@ -70,12 +77,16 @@ describe "Grupo de tests de los rodados" {
   test "La dependencia de cultura no es grande" {
     assert.notThat(cultura.esGrande())
   }
-
+  
   test "La capacidad faltante de deportes es de 25" {
     assert.equals(25, deportes.capacidadFaltante())
   }
-
+  
   test "La capacidad faltante de cultura es de 5" {
     assert.equals(5, cultura.capacidadFaltante())
+  }
+  
+  test "Cachito puede satisfacer al pedido1" {
+    assert.that(pedido1.elAutoPuedeSatisfacerAlPedido(cachito))
   }
 }

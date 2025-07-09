@@ -6,6 +6,8 @@ class Corsa {
   method velocidadMaxima() = 150
   
   method peso() = 1300
+
+  method tieneCapacidadParaPasajeros(unaCantidad) = self.capacidad() >= unaCantidad
 }
 
 class Kwid {
@@ -20,13 +22,17 @@ class Kwid {
   method adicional() = if (tieneTanqueAdicional) 150 else 0
   
   method color() = azul
+
+  method tieneCapacidadParaPasajeros(unaCantidad) = self.capacidad() >= unaCantidad
 }
 
 class AutoEspecial {
   var property capacidad
   var property velocidadMaxima
   var property peso
-  var property color    
+  var property color
+
+  method tieneCapacidadParaPasajeros(unaCantidad) = self.capacidad() >= unaCantidad 
 }
 
 object trafic {
@@ -48,6 +54,8 @@ object trafic {
   method velocidadMaxima() = motor.velocidadMaxima()
   
   method peso() = (4000 + interior.peso()) + motor.peso()
+
+  method tieneCapacidadParaPasajeros(unaCantidad) = self.capacidad() >= unaCantidad
 } 
 
 // Motores !!!!!!!!!!!!!!!!!!!!!!!
@@ -91,6 +99,10 @@ object beige {
 }
 
 object verde {
+  
+}
+
+object negro {
   
 }
 
